@@ -37,7 +37,7 @@
          };
          
          Fixtures.getCollection = function(numberOfAlbums) {
-            return albumPicasso;
+            return albumPicasso[numberOfAlbums];
          };
      }
  
