@@ -1,6 +1,6 @@
  (function() {
      function AlbumCtrl(Fixtures) {
-        this.albumData = Fixtures.getAlbum(albumPicasso);
+        this.albumData = Fixtures.getAlbum();
      }
  
  

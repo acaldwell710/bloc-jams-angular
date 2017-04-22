@@ -2,6 +2,7 @@
      function Fixtures() {
          var Fixtures = {};
          
+         
          var albumPicasso = {
          title: 'The Colors',
          artist: 'Pablo Picasso',
@@ -37,10 +38,16 @@
          };
          
          Fixtures.getCollection = function(numberOfAlbums) {
-            return albumPicasso[numberOfAlbums];
+             this.albums = [];
+             for (var i=0; i < 12; i++) {
+                 this.albums.push(angular.copy(albumPicasso));
+             }
+             return this.albums;
          };
+         
+         return Fixtures;
      }
- 
+        
      angular
          .module('blocJams')
          .factory('Fixtures', Fixtures);
