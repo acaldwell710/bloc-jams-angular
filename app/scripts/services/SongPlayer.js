@@ -19,18 +19,15 @@
     * @desc Stops currently playing song and loads new audio file as currentBuzzObject
     * @param {Object} song
     */
-     
      var setSong = function(song) {
          if (currentBuzzObject) {
              currentBuzzObject.stop();
              SongPlayer.currentSong.playing = null;
          }
-         
          currentBuzzObject = new buzz.sound(song.audioUrl, {
              formats: ['mp3'],
              preload: true
          });
-         
          SongPlayer.currentSong = song;
      };
      
@@ -45,6 +42,19 @@
              song.playing = true;
          }
          
+         SongPlayer.currentSong = song;
+     };
+     
+     /*
+     * @function stopSong
+     * @desc this is used to stop the current song
+     * @param {object} song
+     */
+     var stopSong = function (song){
+         if(currentBuzzObject) {
+            currentBuzzObject.stop();
+            song.playing = null;
+         }
          SongPlayer.currentSong = song;
      };
      
@@ -102,13 +112,29 @@
          currentSongIndex--;
          
          if (currentSongIndex < 0) {
-         currentBuzzObject.stop();
-         SongPlayer.currentSong.playing = null;
-     } else {
+            stopSong(song);
+         } else {
+            var song = currentAlbum.songs[currentSongIndex];
+            setSong(song);
+            playSong(song);
+         }
+     };
+     
+      /*
+     * @function/method SongPlayer.next
+     * @desc allows us to get to next song
+     */
+     SongPlayer.next = function() {
+         var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+         currentSongIndex++;
+         
+         if (currentSongIndex >= currentAlbum.songs.length) {
+             currentSongIndex = 0;
+         } else {
          var song = currentAlbum.songs[currentSongIndex];
-         setSong(song);
-         playSong(song);
-     }
+            setSong(song);
+            playSong(song);
+         }
      };
         
      return SongPlayer;
