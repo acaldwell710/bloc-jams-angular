@@ -24,7 +24,7 @@
                 var seekBar = $(element);
                  
                 attributes.$observe('value', function(newValue) {
-                    scope.value = newValue;
+                    scope.value = newValue;     
                 });
                  
                 attributes.$observe('max', function(newValue) {

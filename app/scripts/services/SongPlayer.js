@@ -29,7 +29,7 @@
              preload: true
          });
          
-            /*
+    /*
      * @function/method currentBuzzObject.bind
      * @desc applies time update to current song
      */
@@ -89,6 +89,12 @@
      * @type {Number}
      */
      SongPlayer.currentTime = null;
+     
+     /*
+     * @desc volume control
+     * @type {number}
+     */
+     SongPlayer.volume = null;
      
      /*
      * @function/method SongPlayer.play
@@ -163,6 +169,17 @@
          if (currentBuzzObject) {
              currentBuzzObject.setTime(time);
          }
+     };
+     
+     /*
+     * @function setVolume
+     * @desc set volume of currently playing song
+     * @ param {number} volume
+     */
+     SongPlayer.setVolume = function(volume) {
+        if (currentBuzzObject) {
+            currentBuzzObject.setVolume(volume);
+        }
      };
         
      return SongPlayer;
